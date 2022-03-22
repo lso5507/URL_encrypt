@@ -21,7 +21,7 @@ public class UrlController {
     @GetMapping("save")
     public String urlSaveForm(){
 
-        return "/url/new";
+        return "url/new";
     }
     @GetMapping("/{id}")
     public String urlCheck(@PathVariable Long id, HttpServletRequest request,HttpServletResponse response){
@@ -30,7 +30,7 @@ public class UrlController {
 
         if(authInfo==null){
             request.setAttribute("id",id);
-            return "/member/login";
+            return "member/login";
         }
         String url = urlService.check(id, authInfo.getSalt());
         if(url==null){
@@ -58,8 +58,8 @@ public class UrlController {
             System.out.println("save = " + save);
             request.setAttribute("path",requestURI.split("save")[0]);
             request.setAttribute("url",url.getId());
-            return "/url/view";
+            return "url/view";
         }
-        return "/url/failed";
+        return "url/failed";
     }
 }

@@ -20,13 +20,13 @@ public class UserController {
     UrlService urlService;
     @GetMapping("/")
     public String main(){
-        return "/member/main";
+        return "member/main";
     }
-    @GetMapping("/login")
+    @GetMapping("login")
     public String loginForm(){
-        return "/member/login";
+        return "member/login";
     }
-    @PostMapping("/login")
+    @PostMapping("login")
     public String userLogin(@ModelAttribute("member") MemberLogin member, HttpSession httpSession,@RequestParam(value = "id", required = false)Long id){
 
         Member memberData = userService.login(member);
@@ -38,22 +38,22 @@ public class UserController {
             if(id!=null){
                 return "redirect:/url/"+id;
             }
-             return "/member/main";
+             return "member/main";
          }
 
-         return "/member/failed";
+         return "member/failed";
 
     }
     @GetMapping("/save")
     public String userSaveForm(){
-        return "/member/new";
+        return "member/new";
     }
     @PostMapping("/save")
     public String userSave(@ModelAttribute("member") Member member){
         if(userService.save(member)){
             return "member/main";
         }else{
-            return "/member/failed";
+            return "member/failed";
         }
     }
 }

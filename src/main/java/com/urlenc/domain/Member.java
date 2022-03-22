@@ -33,6 +33,6 @@ public class Member {
     public void setPassword(String password){
 
         this.salt= Utils.getSalt();
-        this.password=Utils.getEncrypt(this.password,this.salt);
+        this.password=Utils.getEncrypt(password,this.salt);
     }
 }
