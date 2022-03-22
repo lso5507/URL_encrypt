@@ -1,0 +1,15 @@
+CREATE TABLE url_member (
+	id serial PRIMARY KEY,
+	username VARCHAR ( 50 ) UNIQUE NOT NULL,
+	password VARCHAR ( 50 ) NOT NULL,
+	salt VARCHAR ( 255 )  NOT NULL
+);
+ ALTER TABLE url_member ALTER COLUMN password TYPE varchar(255);
+
+
+CREATE TABLE enc_url (
+	id serial PRIMARY KEY,
+	url VARCHAR ( 50 )  NOT NULL,
+	userid serial
+);
+ ALTER TABLE enc_url ALTER COLUMN url TYPE TEXT;

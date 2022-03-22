@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>hello world</h1>
+    <p>회원기능</p>
+    <p>
+        <a href="/member/save">회원가입</a>
+        <a href="/member/login">로그인</a>
+        <a th:if="${session.authInfo?.id}" href="/url/save">주소등록</a>
+
+
+    </p>
+</div>
+
+</body>
+</html>
