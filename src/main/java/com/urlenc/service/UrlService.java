@@ -15,8 +15,6 @@ public class UrlService {
     private URIRepository uriRepository;
     public boolean save(URI url){
         try {
-
-            url.setUrl(url.getUrl(), url.getSalt());
             uriRepository.save(url);
             return true;
         } catch (Exception e) {
@@ -25,23 +23,15 @@ public class UrlService {
         }
     }
     public String check(Long id,String salt){
+
+
+
         Optional<URI> URIData = uriRepository.findById(id);
         if(URIData.isEmpty()){
             return null;
         }
         URI uri = URIData.get();
-        try {
-            String urlData = Utils.aes_decrypt(uri.getUrl(), salt);
-            if(urlData.startsWith("http")){
-                return urlData;
-            }
-            else{
-                return null;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return  null;
-        }
+        return uri.getUrl();
 
     }
 }

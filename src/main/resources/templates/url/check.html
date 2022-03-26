@@ -8,9 +8,13 @@
 <body>
 <div class="container">
 
-    <form action="/url/check" method="post" onload>
-
-
+    <form action="/url/check" method="post" >
+        <div class="form-group">
+            <label for="password"></label>
+            <input type="hidden" name="id">
+            <input type="password" id ="password" name="password" placeholder="패스워드를 입력하세요">
+        </div>
+        <button type="submit">전송</button>
     </form>
 
 </div>

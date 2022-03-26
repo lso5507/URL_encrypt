@@ -4,6 +4,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.math.BigInteger;
+import java.security.Key;
 import java.security.MessageDigest;
 import java.util.Base64;
 import java.util.Random;
@@ -40,8 +41,9 @@ public class Utils {
     }
 
     public static String alg = "AES/CBC/PKCS5Padding";
+    private static String key = "01234567890123456789012345678901";
 
-    public static String aes_encrypt(String text,String key) throws Exception {
+    public static String aes_encrypt(String text) throws Exception {
         key = key.substring(0,16);
         final String iv = key.substring(0,16);
         Cipher cipher = Cipher.getInstance(alg);
@@ -53,7 +55,8 @@ public class Utils {
         return Base64.getEncoder().encodeToString(encrypted);
     }
 
-    public static String aes_decrypt(String cipherText,String key) throws Exception {
+    public static String aes_decrypt(String cipherText) throws Exception {
+
         key = key.substring(0,16);
         final String iv = key.substring(0,16);
         Cipher cipher = Cipher.getInstance(alg);

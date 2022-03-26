@@ -23,6 +23,7 @@ public class UrlController {
 
         return "url/new";
     }
+    /*
     @GetMapping("/{id}")
     public String urlCheck(@PathVariable Long id, HttpServletRequest request,HttpServletResponse response){
         HttpSession session = request.getSession();
@@ -45,12 +46,34 @@ public class UrlController {
         return "url/failed";
 
     }
+    */
+    @GetMapping("/{id}")
+    public String urlCheckForm(@PathVariable Long id,HttpServletRequest request) {
+        request.setAttribute("id",id);
+        return "url/check";
+    }
+    @PostMapping("/{id}")
+    public String urlCheck(@PathVariable Long id,@RequestParam("password") String salt ,HttpServletResponse response){
+
+
+        String url = urlService.check(id,salt);
+        if(url==null){
+            return "url/failed";
+        }
+        try {
+            response.sendRedirect(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "url/failed";
+        }
+        return "url/failed";
+
+    }
     @PostMapping("save")
     public String urlSave(HttpServletRequest request, @ModelAttribute("url") URI url){
-        HttpSession session = request.getSession();
-        AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
-        url.setSalt(authInfo.getSalt());
-        url.setUserid(authInfo.getId());
+//        url.setSalt(authInfo.getSalt());
+        // Table 변경 후 수정 필요
+        url.setUserid(1L);
 
         if(urlService.save(url)){
             String requestURI = request.getRequestURL().toString();
