@@ -27,11 +27,12 @@ public class UserService {
             e.printStackTrace();
             return false;
         }
+
     }
     public Member login(MemberLogin member){
         try{
             Optional<Member> userData = userRepository.findByName(member.getUsername());
-            if(userData.isEmpty())
+            if(!userData.isPresent())
                 return null;
             Member memberData = userData.get();
             String encrypt = Utils.getEncrypt(member.getPassword(), memberData.getSalt());
