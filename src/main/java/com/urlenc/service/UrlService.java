@@ -27,7 +27,7 @@ public class UrlService {
 
 
         Optional<URI> URIData = uriRepository.findById(id);
-        if(URIData.isEmpty()){
+        if(!URIData.isPresent()){
             return null;
         }
         URI uri = URIData.get();
