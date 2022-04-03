@@ -15,6 +15,7 @@ public class UrlService {
     private URIRepository uriRepository;
     public boolean save(URI url){
         try {
+
             uriRepository.save(url);
             return true;
         } catch (Exception e) {
@@ -22,16 +23,22 @@ public class UrlService {
             return false;
         }
     }
-    public String check(Long id,String salt){
+    public String check(Long id,String password){
 
 
 
         Optional<URI> URIData = uriRepository.findById(id);
-        if(!URIData.isPresent()){
+        if(URIData.isEmpty()){
             return null;
         }
+        //URL FOUND
         URI uri = URIData.get();
-        return uri.getUrl();
+        String enc = Utils.getEncrypt(password, uri.getSalt());
+        //URL Match
+        if(enc.equals(uri.getPassword())){
+            return uri.getUrl();
+        }
+        return null;
 
     }
 }

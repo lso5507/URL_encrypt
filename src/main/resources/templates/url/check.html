@@ -6,15 +6,22 @@
     <title>Title</title>
 </head>
 <body>
-<div class="container">
+<div class="container" style="
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+">
 
     <form action="/url/check" method="post" >
         <div class="form-group">
             <label for="password"></label>
-            <input type="hidden" name="id">
-            <input type="password" id ="password" name="password" placeholder="패스워드를 입력하세요">
+            <input th:value="${id}" type="hidden" name="id">
+            <input style="margin-right: 10px;" type="password" id ="password" name="password" placeholder="패스워드를 입력하세요">
+            <button type="submit">전송</button>
         </div>
-        <button type="submit">전송</button>
+
     </form>
 
 </div>

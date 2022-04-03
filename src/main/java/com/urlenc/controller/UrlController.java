@@ -16,6 +16,11 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/url/*")
 public class UrlController {
+    @GetMapping("main")
+    public String main(){
+
+        return "url/main";
+    }
     @Autowired
     UrlService urlService;
     @GetMapping("save")
@@ -53,10 +58,10 @@ public class UrlController {
         return "url/check";
     }
     @PostMapping("/{id}")
-    public String urlCheck(@PathVariable Long id,@RequestParam("password") String salt ,HttpServletResponse response){
+    public String urlCheck(@RequestParam("id") Long id,@RequestParam("password") String password ,HttpServletResponse response){
 
 
-        String url = urlService.check(id,salt);
+        String url = urlService.check(id,password);
         if(url==null){
             return "url/failed";
         }

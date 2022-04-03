@@ -13,3 +13,5 @@ CREATE TABLE enc_url (
 	userid serial
 );
  ALTER TABLE enc_url ALTER COLUMN url TYPE TEXT;
+ ALTER TABLE enc_url add COLUMN password  TEXT;
+ ALTER TABLE enc_url add COLUMN salt  TEXT;

@@ -18,13 +18,14 @@ public class URI {
     //EncURL
     private String url;
     private String password;
-    @Transient
     private String salt;
     private Long userid;
-//    public void setUrl(String url,String enc) throws Exception {
-//        this.url=Utils.aes_encrypt(url);
-//
-//    }
+    public void setPassword(String password) throws Exception {
+        this.salt= Utils.getSalt();
+        this.password=Utils.getEncrypt(password,this.salt);
+
+
+    }
 
 
 }
