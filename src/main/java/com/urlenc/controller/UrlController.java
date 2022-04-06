@@ -57,6 +57,12 @@ public class UrlController {
         request.setAttribute("id",id);
         return "url/check";
     }
+    @ResponseBody
+    @GetMapping("/chan")
+    public String urlCheckForm() {
+
+        return "hello";
+    }
     @PostMapping("/{id}")
     public String urlCheck(@RequestParam("id") Long id,@RequestParam("password") String password ,HttpServletResponse response){
 
